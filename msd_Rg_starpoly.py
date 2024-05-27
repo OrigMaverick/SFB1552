@@ -46,6 +46,6 @@ with open('msd.dat', 'w') as f:
 
 with open('Rg_t.dat', 'w') as f:
     for i in range(len(trajectory1)):
-        f.write(f"{i} {Rg4[i]}\n"
+        f.write(f"{i} {Rg4[i]}\n")
 
 print("data saved!")
