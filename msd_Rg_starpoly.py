@@ -6,7 +6,7 @@ MSD_star = np.empty(len(trajectory1))
 N_star = 1000
 N = 65000
 N_m = 65
-box = trajectory[0].configuration.box[0:3]
+box = trajectory1[0].configuration.box[0:3]
 
 star_cm = np.empty((len(trajectory1),N_star,3))
 inv_N_m = 1 / N_m
