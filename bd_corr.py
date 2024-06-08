@@ -35,18 +35,22 @@ for t2 in range(len(traj)):
     distances.append(distances1)
 
 
-for t1 in range(t):
+for t1 in range(0,t):
     count = 0
     for t2 in range(t_init,t_final):
-        for i in range(min(len(distances[t2]), len(distances[t2+t1]))):
-            if(distances[t2][i][0] == distances[t2+t1][i][0] and distances[t2][i][1] == distances[t2+t1][i][1]):
-                count+=1
-        
-       
-    lifetime.append(count/(2.0 * window))
-l0 = lifetime[0]
+        count2 = 0
+        #if t1 == 0:
+        norm_fact = len(distances[t2])
+        set1 = set((x[0], x[1]) for x in distances[t2 + t1])
+        set2 = set((x[0], x[1]) for x in distances[t2])
+        count2 = len(set1.intersection(set2))
+        count += count2 / norm_fact
+    
+    lifetime.append(count/window)
+
 with open(outfile, 'w') as f:
     for i in range(len(lifetime)):
-        f.write(f"{i} {lifetime[i]/l0}\n")
+        f.write(f"{i} {lifetime[i]}\n")
 
 print("Data saved!")
+
