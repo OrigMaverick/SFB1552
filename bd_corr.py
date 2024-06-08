@@ -22,7 +22,7 @@ box = traj[-1].configuration.box[0:3]
 
 lifetime = []
 t_init = 0
-t = 30
+t = 50
 t_final = len(traj) - t
 window = t_final - t_init
 
