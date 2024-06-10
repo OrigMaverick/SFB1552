@@ -16,7 +16,7 @@ trajectory1 = gsd.hoomd.open(args.filename)
 
 Nm = args.Nm # The number of monomers in a polymer
 N = trajectory1[-1].particles.N # Total number of particles in the sytstem
-
+dt = trajectory1[1].configuration.step - trajectory1[0].configuration.step
 
 Rg = np.empty(len(trajectory1)) # To store the Rg of the individual star polymers
 MSD = np.empty(len(trajectory1)) # To store the MSD of the star polymers
@@ -61,9 +61,9 @@ if args.filename.endswith('.gsd'):
 
 with open(msd_filename, 'w') as f:
     for i in range(len(trajectory1)):
-        f.write(f"{i} {MSD[i]}\n")
+        f.write(f"{i*dt} {MSD[i]}\n")
 with open(Rg_filename, 'w') as f:
     for i in range(len(trajectory1)):
-        f.write(f"{i} {np.sqrt(Rg[i])}\n")
+        f.write(f"{i*dt} {np.sqrt(Rg[i])}\n")
 
 print("data saved!")
